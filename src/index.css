@@ -7160,3 +7160,129 @@ body {
   background: var(--khamari-pale-blue);
   color: var(--khamari-navy);
 }
+
+/* =========================================================
+   FINAL MOBILE NAVBAR FIX (TARGETED TO YOUR CLASS NAMES)
+   ========================================================= */
+@media (max-width: 850px) {
+  /* 1. Force the header to be a clean flex row */
+  .main-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    background: #ffffff !important;
+    width: 100% !important;
+  }
+
+  .header-inner {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: calc(100% - 32px) !important;
+    max-width: 100% !important;
+    min-height: 68px !important;
+    height: auto !important;
+    padding: 8px 0 !important;
+    margin: 0 auto !important;
+    gap: 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Fix the Hamburger Menu */
+  .mobile-menu-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 36px !important;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+
+  /* 3. Fix the Logo and Text Container */
+  .brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important; /* Prevents text from pushing buttons off screen */
+    margin-right: auto !important;
+  }
+
+  .brand-mark {
+    width: 34px !important;
+    height: 34px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .brand-name {
+    display: flex !important;
+    flex-direction: column !important;
+    font-size: 16px !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+  }
+
+  .brand-name span {
+    font-size: 8px !important;
+    margin-top: 2px !important;
+  }
+
+  /* 4. Fix the Right Side Actions (Avatar, Basket) */
+  .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex: 0 0 auto !important;
+    gap: 6px !important;
+    margin-left: 0 !important;
+  }
+
+  /* Make the avatar and basket perfect circles */
+  .header-actions .user-menu-btn,
+  .header-actions .basket-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Hide the text inside the basket button (keep only the icon/number) */
+  .basket-btn span:not(.basket-count) {
+    display: none !important;
+  }
+  
+  .basket-btn b {
+    font-size: 11px !important;
+    margin: 0 !important;
+  }
+
+  /* 5. Ensure the mobile menu drops down correctly when opened */
+  .main-nav {
+    display: none !important; /* Hidden by default */
+  }
+
+  .main-nav.nav-open {
+    display: flex !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    flex-direction: column !important;
+    background: #ffffff !important;
+    border-top: 1px solid #e2eaf1 !important;
+    box-shadow: 0 10px 20px rgba(10, 25, 49, 0.1) !important;
+    padding: 16px !important;
+    z-index: 999 !important;
+  }
+}
