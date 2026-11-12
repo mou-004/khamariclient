@@ -860,3 +860,162 @@
     flex-basis: 30px;
   }
 }
+
+/* ==========================================
+   KHAMARI ACCOUNT DROPDOWN - MOBILE CSS FIX
+   ========================================== */
+
+.user-menu {
+  position: relative !important;
+  display: inline-flex !important;
+  flex-shrink: 0 !important;
+  overflow: visible !important;
+}
+
+.user-menu-panel {
+  position: absolute !important;
+  top: calc(100% + 12px) !important;
+  right: 0 !important;
+  left: auto !important;
+
+  width: 280px !important;
+  max-width: calc(100vw - 24px) !important;
+  min-width: 0 !important;
+
+  padding: 10px !important;
+  box-sizing: border-box !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+
+  background: #ffffff !important;
+  border: 1px solid #e2eaf1 !important;
+  border-radius: 18px !important;
+
+  box-shadow: 0 15px 40px rgba(10, 25, 49, 0.16) !important;
+
+  z-index: 9999 !important;
+  overflow: visible !important;
+}
+
+.user-menu-head {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  padding: 12px !important;
+  margin: 0 0 5px !important;
+
+  border-bottom: 1px solid #e8eef3 !important;
+  box-sizing: border-box !important;
+}
+
+.user-menu-head b {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #0a1931 !important;
+}
+
+.user-menu-head small {
+  display: block !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: 13px !important;
+}
+
+.user-menu-head em {
+  font-size: 12px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+}
+
+.user-menu-panel > button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 44px !important;
+
+  padding: 11px 12px !important;
+  margin: 0 !important;
+
+  gap: 12px !important;
+
+  border: 0 !important;
+  border-radius: 9px !important;
+
+  background: transparent !important;
+  color: #0a1931 !important;
+
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+
+  text-align: left !important;
+  white-space: nowrap !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+
+  box-sizing: border-box !important;
+}
+
+.user-menu-panel > button svg {
+  display: block !important;
+  flex: 0 0 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.user-menu-panel > button:hover {
+  background: #f1f6f9 !important;
+}
+
+.user-menu-panel > .user-menu-out {
+  margin-top: 5px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid #e8eef3 !important;
+  color: #b42318 !important;
+  border-radius: 0 !important;
+}
+
+.user-menu-panel > .user-menu-out:hover {
+  background: #fdf0ef !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .user-menu-panel {
+    width: 280px !important;
+    max-width: calc(100vw - 24px) !important;
+    right: -5px !important;
+    top: calc(100% + 10px) !important;
+    border-radius: 16px !important;
+  }
+
+  .user-menu-panel > button {
+    min-height: 46px !important;
+    font-size: 14px !important;
+  }
+
+  .user-menu-head {
+    padding: 12px !important;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+  .user-menu-panel {
+    width: 260px !important;
+    max-width: calc(100vw - 20px) !important;
+    right: -5px !important;
+  }
+}
