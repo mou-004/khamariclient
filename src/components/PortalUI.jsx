@@ -5,7 +5,7 @@ import { CalendarDays, ArrowLeft, ArrowRight, Bell, BarChart3, CircleHelp, Heart
 export function Brand({ navigate }) {
   return <a className="portal-brand" href="#home" onClick={() => navigate('home')}>
     <span className="portal-brand-mark"><Leaf size={23}/></span>
-    <span><b>Khamari</b><small>Farm to home</small></span>
+    <span><b>Khamari</b><small>Farm to Home</small></span>
   </a>;
 }
 

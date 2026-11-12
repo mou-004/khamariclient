@@ -16,6 +16,21 @@ import NotificationBell from './NotificationBell.jsx';
 import UserMenu from './UserMenu.jsx';
 import { taka } from '../utils/money.js';
 
+// Determine the correct dashboard based on the user's role.
+const getDashboardRoute = (user) => {
+  if (!user) return 'login';
+
+  if (user.role === 'seller' || user.role === 'seller_pending') {
+    return 'seller';
+  }
+
+  if (['admin', 'superAdmin', 'super-admin'].includes(user.role)) {
+    return 'admin';
+  }
+
+  return 'customer';
+};
+
 // Shared header, navigation, basket drawer and toast.
 export default function ShopLayout({
   route,
@@ -42,6 +57,8 @@ export default function ShopLayout({
     navigate(page);
   };
 
+  const dashboardRoute = getDashboardRoute(currentUser);
+
   const accountLinkStyle = {
     display: mobileMenu ? 'flex' : 'none',
     alignItems: 'center',
@@ -63,19 +80,17 @@ export default function ShopLayout({
 
       {/* HEADER */}
       <header className="main-header">
+
         <div className="header-inner">
 
-          {/* Mobile hamburger */}
+          {/* MOBILE HAMBURGER */}
           <button
             className="mobile-menu-btn icon-btn"
             onClick={() => setMobileMenu(!mobileMenu)}
-            aria-label="Toggle menu"
+            aria-label={mobileMenu ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileMenu}
           >
-            {mobileMenu
-              ? <X size={22} />
-              : <Menu size={22} />
-            }
+            {mobileMenu ? <X size={22} /> : <Menu size={22} />}
           </button>
 
           <Brand />
@@ -131,8 +146,7 @@ export default function ShopLayout({
               How it works
             </a>
 
-            {/* ACCOUNT OPTIONS */}
-
+            {/* MOBILE ACCOUNT OPTIONS */}
             <div
               style={{
                 display: mobileMenu ? 'block' : 'none',
@@ -142,29 +156,30 @@ export default function ShopLayout({
                 paddingTop: '8px'
               }}
             >
-              <a
-                href="#login"
-                onClick={(e) => {
-                  e.preventDefault();
-                  goTo('login');
-                }}
-                style={accountLinkStyle}
-              >
-                <LogIn size={19} />
-                <span>Sign In</span>
-              </a>
 
               <a
-                href="#dashboard"
+                href={`#${dashboardRoute}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  goTo('dashboard');
+                  goTo(dashboardRoute);
                 }}
                 style={accountLinkStyle}
               >
-                <LayoutDashboard size={19} />
-                <span>Dashboard</span>
+
+                {currentUser ? (
+                  <>
+                    <LayoutDashboard size={19} />
+                    <span>Dashboard</span>
+                  </>
+                ) : (
+                  <>
+                    <LogIn size={19} />
+                    <span>Sign In</span>
+                  </>
+                )}
+
               </a>
+
             </div>
 
           </nav>
@@ -192,6 +207,7 @@ export default function ShopLayout({
           </div>
 
         </div>
+
       </header>
 
       {/* PAGE CONTENT */}
@@ -201,6 +217,7 @@ export default function ShopLayout({
 
       {/* FOOTER */}
       <footer className="site-footer">
+
         <div className="footer-bottom page-container">
 
           <span>
@@ -214,10 +231,12 @@ export default function ShopLayout({
           </div>
 
         </div>
+
       </footer>
 
       {/* NOTIFICATION TOAST */}
       {notice && (
+
         <div className="toast" role="status">
 
           <span>
@@ -234,6 +253,7 @@ export default function ShopLayout({
           </button>
 
         </div>
+
       )}
 
       {/* BASKET DRAWER */}
