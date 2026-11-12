@@ -7162,127 +7162,121 @@ body {
 }
 
 /* =========================================================
-   FINAL MOBILE NAVBAR FIX (TARGETED TO YOUR CLASS NAMES)
+   SCOPED MOBILE NAVBAR FIX (STOREFRONT ONLY)
    ========================================================= */
 @media (max-width: 850px) {
-  /* 1. Force the header to be a clean flex row */
-  .main-header {
+  
+  /* Only apply if it's the main site, and NOT the portal/dashboard */
+  body:has(.site-shell:not(.portal-shell)) .main-header,
+  .site-shell:not(.portal-shell) .main-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 10px 16px !important;
+    background: #ffffff !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    min-height: 70px !important;
     position: sticky !important;
     top: 0 !important;
     z-index: 1000 !important;
-    background: #ffffff !important;
-    width: 100% !important;
+    border-bottom: 1px solid #e2eaf1 !important;
   }
 
-  .header-inner {
+  /* Target the inner wrapper */
+  .site-shell:not(.portal-shell) .header-inner {
     display: flex !important;
-    flex-wrap: nowrap !important;
     align-items: center !important;
     justify-content: space-between !important;
-    width: calc(100% - 32px) !important;
-    max-width: 100% !important;
-    min-height: 68px !important;
-    height: auto !important;
-    padding: 8px 0 !important;
-    margin: 0 auto !important;
+    width: 100% !important;
     gap: 10px !important;
-    box-sizing: border-box !important;
+    padding: 0 !important; /* Reset any old padding */
   }
 
-  /* 2. Fix the Hamburger Menu */
-  .mobile-menu-btn {
-    display: inline-flex !important;
+  /* Hamburger Menu */
+  .site-shell:not(.portal-shell) .mobile-menu-btn {
+    display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    flex: 0 0 36px !important;
-    width: 36px !important;
-    height: 36px !important;
+    width: 40px !important;
+    height: 40px !important;
     padding: 0 !important;
     margin: 0 !important;
     background: transparent !important;
-  }
-
-  /* 3. Fix the Logo and Text Container */
-  .brand {
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    flex: 1 1 auto !important;
-    min-width: 0 !important; /* Prevents text from pushing buttons off screen */
-    margin-right: auto !important;
-  }
-
-  .brand-mark {
-    width: 34px !important;
-    height: 34px !important;
     flex-shrink: 0 !important;
   }
 
-  .brand-name {
+  /* Logo and Text Container */
+  .site-shell:not(.portal-shell) .brand {
     display: flex !important;
-    flex-direction: column !important;
-    font-size: 16px !important;
-    line-height: 1.1 !important;
-    white-space: nowrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
   }
 
-  .brand-name span {
+  /* Logo Icon */
+  .site-shell:not(.portal-shell) .brand-mark {
+    width: 36px !important;
+    height: 36px !important;
+    flex-shrink: 0 !important;
+    background-color: #247044 !important; 
+    border-radius: 10px !important;
+    padding: 6px !important;
+    color: white !important;
+    display: grid !important;
+    place-items: center !important;
+  }
+
+  /* Logo Text */
+  .site-shell:not(.portal-shell) .brand-name {
+    font-family: 'Manrope', sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    color: #247044 !important; 
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .site-shell:not(.portal-shell) .brand-name span {
     font-size: 8px !important;
+    letter-spacing: 1.5px !important;
+    color: #4A7FA7 !important; 
     margin-top: 2px !important;
   }
 
-  /* 4. Fix the Right Side Actions (Avatar, Basket) */
-  .header-actions {
+  /* Right Side Actions (Avatar & Basket) */
+  .site-shell:not(.portal-shell) .header-actions {
     display: flex !important;
     align-items: center !important;
     justify-content: flex-end !important;
-    flex: 0 0 auto !important;
-    gap: 6px !important;
-    margin-left: 0 !important;
+    gap: 8px !important;
+    flex-shrink: 0 !important;
   }
 
-  /* Make the avatar and basket perfect circles */
-  .header-actions .user-menu-btn,
-  .header-actions .basket-btn {
-    display: inline-flex !important;
+  /* Force Avatar and Basket to be perfect circles */
+  .site-shell:not(.portal-shell) .header-actions button,
+  .site-shell:not(.portal-shell) .header-actions a,
+  .site-shell:not(.portal-shell) .user-menu-btn,
+  .site-shell:not(.portal-shell) .basket-btn {
+    display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 38px !important;
-    height: 38px !important;
-    min-width: 38px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
     padding: 0 !important;
     margin: 0 !important;
     border-radius: 50% !important;
     box-sizing: border-box !important;
   }
 
-  /* Hide the text inside the basket button (keep only the icon/number) */
-  .basket-btn span:not(.basket-count) {
+  /* Hide text labels in the buttons (keep only icons) */
+  .site-shell:not(.portal-shell) .basket-btn span:not(.basket-count),
+  .site-shell:not(.portal-shell) .header-actions span:not(.notif-badge) {
     display: none !important;
-  }
-  
-  .basket-btn b {
-    font-size: 11px !important;
-    margin: 0 !important;
-  }
-
-  /* 5. Ensure the mobile menu drops down correctly when opened */
-  .main-nav {
-    display: none !important; /* Hidden by default */
-  }
-
-  .main-nav.nav-open {
-    display: flex !important;
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    flex-direction: column !important;
-    background: #ffffff !important;
-    border-top: 1px solid #e2eaf1 !important;
-    box-shadow: 0 10px 20px rgba(10, 25, 49, 0.1) !important;
-    padding: 16px !important;
-    z-index: 999 !important;
   }
 }
