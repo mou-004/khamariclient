@@ -1,39 +1,201 @@
+
 import { useEffect, useRef, useState } from 'react';
-import { Bell, ChevronDown, ClipboardList, Gavel, LayoutDashboard, LogOut, RotateCcw, UserRound } from 'lucide-react';
+import {
+  UserRound,
+  ChevronDown,
+  LogIn,
+  UserPlus,
+  LogOut,
+  X
+} from 'lucide-react';
 
-const dashboardFor = (role) => (['seller', 'seller_pending'].includes(role) ? 'seller' : ['admin', 'superAdmin', 'super-admin'].includes(role) ? 'admin' : 'customer');
-const roleLabel = (role) => (dashboardFor(role) === 'admin' ? 'Administrator' : dashboardFor(role) === 'seller' ? (role === 'seller_pending' ? 'Seller (awaiting approval)' : 'Seller') : 'Customer');
-
-// Header account button. Signed out: a "Sign in" button. Signed in: your initial, name and a menu with Sign out.
 export default function UserMenu({ user, navigate, onLogout }) {
   const [open, setOpen] = useState(false);
-  const box = useRef(null);
-  useEffect(() => {
-    if (!open) return undefined;
-    const outside = (e) => { if (box.current && !box.current.contains(e.target)) setOpen(false); };
-    const esc = (e) => e.key === 'Escape' && setOpen(false);
-    document.addEventListener('mousedown', outside); document.addEventListener('keydown', esc);
-    return () => { document.removeEventListener('mousedown', outside); document.removeEventListener('keydown', esc); };
-  }, [open]);
+  const menuRef = useRef(null);
 
-  if (!user) return <button className="sign-in-btn" onClick={() => navigate('login')}>Sign in</button>;
-  const go = (path) => { setOpen(false); navigate(path); };
-  const customer = dashboardFor(user.role) === 'customer';
-  return <div className="user-menu" ref={box}>
-    <button type="button" className="user-menu-btn" aria-haspopup="menu" aria-expanded={open} onClick={() => setOpen(!open)}>
-      <span className="user-avatar">{(user.name || user.email || '?').slice(0, 1).toUpperCase()}</span>
-      <span className="user-menu-name">{(user.name || 'My account').split(' ')[0]}</span><ChevronDown size={14} />
-    </button>
-    {open && <div className="user-menu-panel" role="menu">
-      <div className="user-menu-head"><b>{user.name || 'My account'}</b><small>{user.email}</small><em>{roleLabel(user.role)}</em></div>
-      <button role="menuitem" onClick={() => go(dashboardFor(user.role))}><LayoutDashboard size={16} /> {customer ? 'My account' : 'Dashboard'}</button>
-      {customer && <button role="menuitem" onClick={() => go('orders')}><ClipboardList size={16} /> My orders</button>}
-      {customer && <button role="menuitem" onClick={() => go('payments')}><ClipboardList size={16} /> My payments</button>}
-      {customer && <button role="menuitem" onClick={() => go('my-bids')}><Gavel size={16} /> My bids</button>}
-      {customer && <button role="menuitem" onClick={() => go('refunds')}><RotateCcw size={16} /> Refunds &amp; returns</button>}
-      <button role="menuitem" onClick={() => go('notifications')}><Bell size={16} /> Notifications</button>
-      <button role="menuitem" onClick={() => go('profile')}><UserRound size={16} /> Profile</button>
-      <button type="button" role="menuitem" className="user-menu-out" onClick={async () => { setOpen(false); await onLogout?.(); }}><LogOut size={16} /> Sign out</button>
-    </div>}
-  </div>;
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
+
+  const go = (page) => {
+    setOpen(false);
+    navigate(page);
+  };
+
+  const handleLogout = async () => {
+    setOpen(false);
+    if (onLogout) await onLogout();
+  };
+
+  const name =
+    user?.name ||
+    user?.displayName ||
+    user?.email?.split('@')[0] ||
+    'My Account';
+
+  const email = user?.email || '';
+
+  return (
+    <div
+      className="user-menu"
+      ref={menuRef}
+      style={{ position: 'relative', display: 'flex', alignItems: 'center' }}
+    >
+      {!user ? (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '7px',
+            whiteSpace: 'nowrap'
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => go('login')}
+            style={{
+              padding: '9px 13px',
+              border: '1px solid #187345',
+              borderRadius: '9px',
+              background: '#ffffff',
+              color: '#187345',
+              fontWeight: 600,
+              cursor: 'pointer',
+              fontSize: '13px'
+            }}
+          >
+            <LogIn size={15} style={{ verticalAlign: 'middle', marginRight: 5 }} />
+            Sign In
+          </button>
+
+          <button
+            type="button"
+            onClick={() => go('register')}
+            style={{
+              padding: '9px 13px',
+              border: '1px solid #187345',
+              borderRadius: '9px',
+              background: '#187345',
+              color: '#ffffff',
+              fontWeight: 600,
+              cursor: 'pointer',
+              fontSize: '13px'
+            }}
+          >
+            <UserPlus size={15} style={{ verticalAlign: 'middle', marginRight: 5 }} />
+            Sign Up
+          </button>
+        </div>
+      ) : (
+        <>
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            aria-expanded={open}
+            aria-label="Open account menu"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '6px 9px',
+              border: 'none',
+              borderRadius: '10px',
+              background: '#f0f5f1',
+              color: '#183b2b',
+              cursor: 'pointer'
+            }}
+          >
+            <span
+              style={{
+                width: '34px',
+                height: '34px',
+                borderRadius: '50%',
+                background: '#187345',
+                color: '#ffffff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 700
+              }}
+            >
+              {name.charAt(0).toUpperCase()}
+            </span>
+
+            <span style={{ fontSize: '13px', fontWeight: 600 }}>
+              {name.length > 12 ? name.slice(0, 12) + '...' : name}
+            </span>
+
+            <ChevronDown size={15} />
+          </button>
+
+          {open && (
+            <div
+              style={{
+                position: 'absolute',
+                top: 'calc(100% + 10px)',
+                right: 0,
+                width: '230px',
+                background: '#ffffff',
+                border: '1px solid #e5e7eb',
+                borderRadius: '12px',
+                boxShadow: '0 8px 25px rgba(0,0,0,0.13)',
+                padding: '12px',
+                zIndex: 9999
+              }}
+            >
+              <div style={{ padding: '8px', borderBottom: '1px solid #eeeeee' }}>
+                <strong style={{ display: 'block', color: '#183b2b' }}>
+                  {name}
+                </strong>
+                <small style={{ color: '#777', wordBreak: 'break-all' }}>
+                  {email}
+                </small>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleLogout}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  width: '100%',
+                  padding: '12px 8px',
+                  marginTop: '5px',
+                  border: 'none',
+                  borderRadius: '7px',
+                  background: '#ffffff',
+                  color: '#dc2626',
+                  cursor: 'pointer',
+                  fontWeight: 600,
+                  textAlign: 'left'
+                }}
+              >
+                <LogOut size={17} />
+                Logout
+              </button>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
 }
