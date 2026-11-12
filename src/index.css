@@ -7074,3 +7074,89 @@ textarea:focus-visible,
     display: none !important;
   }
 }
+
+
+/* ------------------------------------------------------------------
+   KHAMARI GLOBAL BRAND SYSTEM
+   Core palette:
+   Navy       #0A1931
+   Pale blue  #B3CFE5
+   Blue       #4A7FA7
+   Deep blue  #1A3D63
+   Off-white  #F6FAFD
+   Brand green is reserved for the Khamari logo and wordmark.
+------------------------------------------------------------------- */
+:root {
+  --khamari-navy: #0A1931;
+  --khamari-pale-blue: #B3CFE5;
+  --khamari-blue: #4A7FA7;
+  --khamari-deep-blue: #1A3D63;
+  --khamari-offwhite: #F6FAFD;
+  --khamari-brand-green: #247044;
+
+  /* Shared component aliases */
+  --navy: var(--khamari-navy);
+  --pale: var(--khamari-pale-blue);
+  --blue: var(--khamari-blue);
+  --ocean: var(--khamari-deep-blue);
+  --white: var(--khamari-offwhite);
+  --kh-brand: var(--khamari-deep-blue);
+  --kh-brand-dark: var(--khamari-navy);
+  --kh-brand-soft: var(--khamari-offwhite);
+  --kh-brand-border: var(--khamari-pale-blue);
+}
+
+/* Main shop, footer, customer/seller/admin portal and authentication logos */
+.brand-mark,
+.site-footer .brand-mark,
+.portal-brand-mark,
+.auth-mark,
+.auth-brand-mark,
+.login-brand-mark,
+.register-brand-mark {
+  background-color: var(--khamari-brand-green) !important;
+  color: #ffffff !important;
+  border-color: var(--khamari-brand-green) !important;
+}
+
+.brand-name,
+.site-footer .brand-name,
+.portal-brand b,
+.portal-brand strong,
+.auth-brand-name,
+.auth-brand .brand-name,
+.auth-brand b,
+.auth-brand strong,
+.auth-form-heading .brand-name,
+.login-brand-name,
+.register-brand-name {
+  color: var(--khamari-brand-green) !important;
+}
+
+/* Keep the small FARM TO HOME tagline in the blue palette */
+.brand-name span,
+.site-footer .brand-name span,
+.portal-brand small,
+.auth-brand small {
+  color: var(--khamari-blue) !important;
+}
+
+.portal-brand {
+  color: var(--khamari-brand-green) !important;
+}
+
+/* Consistent page canvas and base text */
+html,
+body,
+.site-shell {
+  background-color: var(--khamari-offwhite);
+}
+
+body {
+  color: var(--khamari-navy);
+}
+
+::selection {
+  background: var(--khamari-pale-blue);
+  color: var(--khamari-navy);
+}
