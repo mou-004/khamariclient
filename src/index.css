@@ -7064,3 +7064,13 @@ textarea:focus-visible,
     min-height: 185px !important;
   }
 }
+/* Hide product count and extra product message on mobile */
+@media (max-width: 760px) {
+  .results-line {
+    display: none !important;
+  }
+
+  .shop-bottom {
+    display: none !important;
+  }
+}
