@@ -6742,3 +6742,28 @@ textarea:focus-visible,
     border-top: 1px solid #eeeeee;
   }
 }
+
+/* Fix Dashboard and Sign In visibility in mobile hamburger menu */
+
+@media (max-width: 768px) {
+  .main-nav.nav-open .mobile-account-link {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 16px;
+    color: #187345 !important;
+    background: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border-top: 1px solid #eeeeee;
+    cursor: pointer;
+  }
+
+  .main-nav.nav-open .mobile-account-link:hover {
+    background: #f0f7f2;
+  }
+}
