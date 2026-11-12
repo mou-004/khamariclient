@@ -1,7 +1,6 @@
 
 import {
   ArrowRight,
-  Bell,
   Check,
   Menu,
   Minus,
@@ -17,7 +16,7 @@ import NotificationBell from './NotificationBell.jsx';
 import UserMenu from './UserMenu.jsx';
 import { taka } from '../utils/money.js';
 
-// Shared header, basket drawer and toast for marketplace pages.
+// Shared header, navigation, basket drawer and toast.
 export default function ShopLayout({
   route,
   children,
@@ -43,25 +42,45 @@ export default function ShopLayout({
     navigate(page);
   };
 
+  const accountLinkStyle = {
+    display: mobileMenu ? 'flex' : 'none',
+    alignItems: 'center',
+    gap: '12px',
+    width: '100%',
+    padding: '15px 16px',
+    color: '#187345',
+    background: '#ffffff',
+    fontSize: '15px',
+    fontWeight: 700,
+    textDecoration: 'none',
+    borderTop: '1px solid #eeeeee',
+    boxSizing: 'border-box',
+    flexShrink: 0
+  };
+
   return (
     <div className="site-shell">
 
+      {/* HEADER */}
       <header className="main-header">
         <div className="header-inner">
 
-          {/* Mobile hamburger button */}
+          {/* Mobile hamburger */}
           <button
             className="mobile-menu-btn icon-btn"
             onClick={() => setMobileMenu(!mobileMenu)}
             aria-label="Toggle menu"
             aria-expanded={mobileMenu}
           >
-            {mobileMenu ? <X size={22} /> : <Menu size={22} />}
+            {mobileMenu
+              ? <X size={22} />
+              : <Menu size={22} />
+            }
           </button>
 
           <Brand />
 
-          {/* Main navigation and mobile menu */}
+          {/* MAIN NAVIGATION */}
           <nav className={`main-nav ${mobileMenu ? 'nav-open' : ''}`}>
 
             <a
@@ -72,20 +91,21 @@ export default function ShopLayout({
             </a>
 
             <a
+              href="#products"
               className={
-                route === 'products' || route === 'product-detail'
+                route === 'products' ||
+                route === 'product-detail'
                   ? 'nav-active'
                   : ''
               }
-              href="#products"
               onClick={closeMobileMenu}
             >
               Products
             </a>
 
             <a
-              className={route === 'preorder' ? 'nav-active' : ''}
               href="#preorder"
+              className={route === 'preorder' ? 'nav-active' : ''}
               onClick={(e) => {
                 e.preventDefault();
                 goTo('preorder');
@@ -111,39 +131,45 @@ export default function ShopLayout({
               How it works
             </a>
 
-            {/* Dashboard for signed-in users */}
-            {currentUser && (
-              <a
-                href="#dashboard"
-                onClick={(e) => {
-                  e.preventDefault();
-                  goTo('dashboard');
-                }}
-                className="mobile-account-link"
-              >
-                <LayoutDashboard size={17} />
-                Dashboard
-              </a>
-            )}
+            {/* ACCOUNT OPTIONS */}
 
-            {/* Sign In for visitors */}
-            {!currentUser && (
+            <div
+              style={{
+                display: mobileMenu ? 'block' : 'none',
+                width: '100%',
+                borderTop: '2px solid #e9eee9',
+                marginTop: '8px',
+                paddingTop: '8px'
+              }}
+            >
               <a
                 href="#login"
                 onClick={(e) => {
                   e.preventDefault();
                   goTo('login');
                 }}
-                className="mobile-account-link"
+                style={accountLinkStyle}
               >
-                <LogIn size={17} />
-                Sign In
+                <LogIn size={19} />
+                <span>Sign In</span>
               </a>
-            )}
+
+              <a
+                href="#dashboard"
+                onClick={(e) => {
+                  e.preventDefault();
+                  goTo('dashboard');
+                }}
+                style={accountLinkStyle}
+              >
+                <LayoutDashboard size={19} />
+                <span>Dashboard</span>
+              </a>
+            </div>
 
           </nav>
 
-          {/* Desktop header actions */}
+          {/* DESKTOP HEADER ACTIONS */}
           <div className="header-actions">
 
             <NotificationBell navigate={navigate} />
@@ -164,16 +190,19 @@ export default function ShopLayout({
             </button>
 
           </div>
+
         </div>
       </header>
 
+      {/* PAGE CONTENT */}
       <main>
         {children}
       </main>
 
-      {/* Footer */}
+      {/* FOOTER */}
       <footer className="site-footer">
         <div className="footer-bottom page-container">
+
           <span>
             © 2026 Khamari. Made for a fresher Bangladesh.
           </span>
@@ -183,12 +212,14 @@ export default function ShopLayout({
             <a href="#refund-policy">Returns &amp; refunds</a>
             <a href="#support">Support</a>
           </div>
+
         </div>
       </footer>
 
-      {/* Notification toast */}
+      {/* NOTIFICATION TOAST */}
       {notice && (
         <div className="toast" role="status">
+
           <span>
             <Check size={16} />
           </span>
@@ -201,23 +232,30 @@ export default function ShopLayout({
           >
             <X size={15} />
           </button>
+
         </div>
       )}
 
-      {/* Basket drawer */}
+      {/* BASKET DRAWER */}
       {cartOpen && (
+
         <div
           className="drawer-backdrop"
           onClick={() => setCartOpen(false)}
         >
+
           <aside
             className="cart-drawer"
             onClick={(e) => e.stopPropagation()}
           >
 
             <div className="drawer-head">
+
               <div>
-                <span className="section-kicker">YOUR ORDER</span>
+                <span className="section-kicker">
+                  YOUR ORDER
+                </span>
+
                 <h2>
                   Your basket <span>({cartCount})</span>
                 </h2>
@@ -230,12 +268,17 @@ export default function ShopLayout({
               >
                 <X size={20} />
               </button>
+
             </div>
 
             {cart.length ? (
+
               <>
+
                 <div className="cart-items">
+
                   {cart.map((item) => (
+
                     <div className="cart-item" key={item.id}>
 
                       <img
@@ -244,15 +287,21 @@ export default function ShopLayout({
                       />
 
                       <div className="cart-item-info">
+
                         <b>{item.name}</b>
+
                         <span>{item.unit}</span>
+
                         <strong>
                           {taka(item.price * item.quantity)}
                         </strong>
 
                         <div className="quantity-control">
+
                           <button
-                            onClick={() => updateQuantity(item.id, -1)}
+                            onClick={() =>
+                              updateQuantity(item.id, -1)
+                            }
                             aria-label="Decrease quantity"
                           >
                             <Minus size={13} />
@@ -261,19 +310,26 @@ export default function ShopLayout({
                           <span>{item.quantity}</span>
 
                           <button
-                            onClick={() => updateQuantity(item.id, 1)}
+                            onClick={() =>
+                              updateQuantity(item.id, 1)
+                            }
                             aria-label="Increase quantity"
                           >
                             <Plus size={13} />
                           </button>
+
                         </div>
+
                       </div>
 
                     </div>
+
                   ))}
+
                 </div>
 
                 <div className="cart-summary">
+
                   <div>
                     <span>Subtotal</span>
                     <strong>{taka(cartTotal)}</strong>
@@ -300,15 +356,21 @@ export default function ShopLayout({
                   >
                     Continue shopping
                   </button>
+
                 </div>
+
               </>
+
             ) : (
+
               <div className="cart-empty">
+
                 <span>
                   <ShoppingBag size={26} />
                 </span>
 
                 <h3>Your basket is waiting</h3>
+
                 <p>
                   Add a few fresh finds from the farm shop.
                 </p>
@@ -320,11 +382,15 @@ export default function ShopLayout({
                   Keep browsing
                   <ArrowRight size={15} />
                 </button>
+
               </div>
+
             )}
 
           </aside>
+
         </div>
+
       )}
 
     </div>
