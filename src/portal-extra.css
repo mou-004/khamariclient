@@ -248,9 +248,9 @@
 
 @media (max-width: 900px) {
 
-  .portal-attention { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .portal-attention { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-  .order-detail-cols { grid-template-columns: 1fr; }
+  .order-detail-cols { grid-template-columns: 1fr; }
 
 }
 
@@ -456,47 +456,47 @@
 
 .cod-payment-success {
 
-  display: flex;
+  display: flex;
 
-  align-items: flex-start;
+  align-items: flex-start;
 
-  gap: 14px;
+  gap: 14px;
 
-  flex: 1 1 100%;
+  flex: 1 1 100%;
 
-  width: 100%;
+  width: 100%;
 
-  margin: 14px 0;
+  margin: 14px 0;
 
-  padding: 18px;
+  padding: 18px;
 
-  border: 1px solid #B3CFE5;
+  border: 1px solid #B3CFE5;
 
-  border-radius: 14px;
+  border-radius: 14px;
 
-  background: #F6FAFD;
+  background: #F6FAFD;
 
-  color: #1A3D63;
+  color: #1A3D63;
 
 }
 
 .cod-payment-success-icon {
 
-  display: grid;
+  display: grid;
 
-  place-items: center;
+  place-items: center;
 
-  flex: 0 0 46px;
+  flex: 0 0 46px;
 
-  width: 46px;
+  width: 46px;
 
-  height: 46px;
+  height: 46px;
 
-  border-radius: 50%;
+  border-radius: 50%;
 
-  background: #F6FAFD;
+  background: #F6FAFD;
 
-  color: #4A7FA7;
+  color: #4A7FA7;
 
 }
 
@@ -512,9 +512,9 @@
 
 @media (max-width: 600px) {
 
-  .cod-payment-success { padding: 13px; gap: 10px; }
+  .cod-payment-success { padding: 13px; gap: 10px; }
 
-  .cod-payment-success-copy > strong { font-size: 18px; }
+  .cod-payment-success-copy > strong { font-size: 18px; }
 
 }
 
@@ -526,15 +526,15 @@
 
 .order-payment-meta {
 
-  display: flex;
+  display: flex;
 
-  flex-wrap: wrap;
+  flex-wrap: wrap;
 
-  gap: 8px 20px;
+  gap: 8px 20px;
 
-  margin-top: 10px;
+  margin-top: 10px;
 
-  font-size: 13px;
+  font-size: 13px;
 
 }
 
@@ -596,13 +596,13 @@
 
 @media print {
 
-  body \* { visibility:hidden !important; }
+  body \* { visibility:hidden !important; }
 
-  .kh-invoice-print,.kh-invoice-print \* { visibility:visible !important; }
+  .kh-invoice-print,.kh-invoice-print \* { visibility:visible !important; }
 
-  .kh-invoice-print { display:block !important; position:fixed !important; inset:0 !important; width:100% !important; padding:0 !important; background:#fff !important; color:#111 !important; z-index:999999 !important; font:12px/1.5 Arial,sans-serif !important; }
+  .kh-invoice-print { display:block !important; position:fixed !important; inset:0 !important; width:100% !important; padding:0 !important; background:#fff !important; color:#111 !important; z-index:999999 !important; font:12px/1.5 Arial,sans-serif !important; }
 
-  .invoice-action-row { display:none !important; }
+  .invoice-action-row { display:none !important; }
 
 }
 
@@ -612,11 +612,11 @@
 
 .kh-payment-success-banner {
 
-  display:flex; align-items:center; gap:13px; width:100%; box-sizing:border-box;
+  display:flex; align-items:center; gap:13px; width:100%; box-sizing:border-box;
 
-  margin:0 0 18px; padding:16px 18px; border:1px solid #B3CFE5;
+  margin:0 0 18px; padding:16px 18px; border:1px solid #B3CFE5;
 
-  border-radius:13px; background:#F6FAFD; color:#1A3D63; text-align:left;
+  border-radius:13px; background:#F6FAFD; color:#1A3D63; text-align:left;
 
 }
 
@@ -636,49 +636,49 @@
 
 .order-progress-list {
 
-  list-style: none;
+  list-style: none;
 
-  margin: 0;
+  margin: 0;
 
-  padding: 2px 0;
+  padding: 2px 0;
 
-  display: grid;
+  display: grid;
 
-  gap: 0;
+  gap: 0;
 
 }
 
 .order-progress-list li {
 
-  display: flex;
+  display: flex;
 
-  align-items: flex-start;
+  align-items: flex-start;
 
-  gap: 10px;
+  gap: 10px;
 
-  min-height: 48px;
+  min-height: 48px;
 
-  position: relative;
+  position: relative;
 
-  color: #89969f;
+  color: #89969f;
 
 }
 
 .order-progress-list li:not(:last-child)::after {
 
-  content: '';
+  content: '';
 
-  position: absolute;
+  position: absolute;
 
-  left: 12px;
+  left: 12px;
 
-  top: 27px;
+  top: 27px;
 
-  bottom: -1px;
+  bottom: -1px;
 
-  width: 2px;
+  width: 2px;
 
-  background: #e1e8e4;
+  background: #e1e8e4;
 
 }
 
@@ -686,49 +686,49 @@
 
 .order-progress-marker {
 
-  z-index: 1;
+  z-index: 1;
 
-  display: inline-flex;
+  display: inline-flex;
 
-  flex: 0 0 26px;
+  flex: 0 0 26px;
 
-  width: 26px;
+  width: 26px;
 
-  height: 26px;
+  height: 26px;
 
-  align-items: center;
+  align-items: center;
 
-  justify-content: center;
+  justify-content: center;
 
-  border: 1px solid #B3CFE5;
+  border: 1px solid #B3CFE5;
 
-  border-radius: 50%;
+  border-radius: 50%;
 
-  background: #fff;
+  background: #fff;
 
-  color: #718195;
+  color: #718195;
 
-  font-size: 11px;
+  font-size: 11px;
 
-  font-weight: 700;
+  font-weight: 700;
 
 }
 
 .order-progress-list li.is-complete .order-progress-marker {
 
-  border-color: #B3CFE5;
+  border-color: #B3CFE5;
 
-  background: #F6FAFD;
+  background: #F6FAFD;
 
-  color: #4A7FA7;
+  color: #4A7FA7;
 
 }
 
 .order-progress-list li.is-current .order-progress-marker {
 
-  border-color: #4A7FA7;
+  border-color: #4A7FA7;
 
-  box-shadow: 0 0 0 3px #F6FAFD;
+  box-shadow: 0 0 0 3px #F6FAFD;
 
 }
 
@@ -744,11 +744,11 @@
 
 .kh-payment-pending-banner {
 
-  border-color: #e8cf91;
+  border-color: #e8cf91;
 
-  background: #fff8e8;
+  background: #fff8e8;
 
-  color: #8b641c;
+  color: #8b641c;
 
 }
 
@@ -756,7 +756,7 @@
 
 @media (max-width: 700px) {
 
-  .order-detail-cols { grid-template-columns: 1fr; }
+  .order-detail-cols { grid-template-columns: 1fr; }
 
 }
 
@@ -766,21 +766,21 @@
 
 .portal-promo-code-mark {
 
-  display: grid;
+  display: grid;
 
-  place-items: center;
+  place-items: center;
 
-  width: 40px;
+  width: 40px;
 
-  height: 40px;
+  height: 40px;
 
-  flex: 0 0 40px;
+  flex: 0 0 40px;
 
-  border-radius: 9px;
+  border-radius: 9px;
 
-  background: #F6FAFD;
+  background: #F6FAFD;
 
-  color: #4A7FA7;
+  color: #4A7FA7;
 
 }
 
@@ -790,37 +790,37 @@
 
 .order-payment-summary {
 
-  border: 1px solid #B3CFE5;
+  border: 1px solid #B3CFE5;
 
-  background: #f5fbf7;
+  background: #f5fbf7;
 
-  border-radius: 12px;
+  border-radius: 12px;
 
-  padding: 14px 16px;
+  padding: 14px 16px;
 
 }
 
 .order-payment-summary > b {
 
-  display: block;
+  display: block;
 
-  margin-bottom: 8px;
+  margin-bottom: 8px;
 
-  color: #1A3D63;
+  color: #1A3D63;
 
-  font-size: 13px;
+  font-size: 13px;
 
 }
 
 .order-payment-meta {
 
-  display: grid;
+  display: grid;
 
-  gap: 6px;
+  gap: 6px;
 
-  font-size: 12px;
+  font-size: 12px;
 
-  line-height: 1.5;
+  line-height: 1.5;
 
 }
 
@@ -910,35 +910,35 @@
 
 .profile-contact-sharing {
 
-  display: flex !important;
+  display: flex !important;
 
-  align-items: flex-start;
+  align-items: flex-start;
 
-  gap: 11px;
+  gap: 11px;
 
-  padding: 14px 15px;
+  padding: 14px 15px;
 
-  border: 1px solid #F6FAFD;
+  border: 1px solid #F6FAFD;
 
-  border-radius: 12px;
+  border-radius: 12px;
 
-  background: #f5faf6;
+  background: #f5faf6;
 
-  cursor: pointer;
+  cursor: pointer;
 
 }
 
 .profile-contact-sharing input {
 
-  width: 17px !important;
+  width: 17px !important;
 
-  height: 17px;
+  height: 17px;
 
-  margin: 2px 0 0;
+  margin: 2px 0 0;
 
-  flex: 0 0 auto;
+  flex: 0 0 auto;
 
-  accent-color: #1A3D63;
+  accent-color: #1A3D63;
 
 }
 
