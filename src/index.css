@@ -274,6 +274,89 @@
     align-items: flex-start !important;
   }
 }
+
+/* =========================================================
+   ULTIMATE FIX: USER DROPDOWN MENU (MOBILE WRAPPING)
+   ========================================================= */
+@media (max-width: 768px) {
+  
+  /* 1. Force the dropdown container to be a flexible column */
+  .user-menu-panel {
+    display: flex !important;
+    flex-direction: column !important;
+    position: absolute !important;
+    top: calc(100% + 10px) !important;
+    right: 0 !important;
+    width: 260px !important;
+    max-width: calc(100vw - 24px) !important;
+    background: #ffffff !important;
+    border: 1px solid #e2eaf1 !important;
+    border-radius: 14px !important;
+    box-shadow: 0 22px 54px rgba(10, 25, 49, 0.16) !important;
+    padding: 8px !important;
+    z-index: 9999 !important;
+    overflow: visible !important;
+  }
+
+  /* 2. Force the menu buttons to be full-width rows, no wrapping */
+  .user-menu-panel > button {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    min-height: 44px !important;
+    padding: 11px 12px !important;
+    gap: 10px !important;
+    white-space: nowrap !important; /* THIS PREVENTS "SIGN OUT" FROM WRAPPING */
+    word-break: keep-all !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #0a1931 !important;
+    text-align: left !important;
+    border-radius: 10px !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 3. Fix the icons so they don't shrink or wrap */
+  .user-menu-panel > button svg {
+    display: block !important;
+    flex: 0 0 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  /* 4. Fix the sign out button specifically */
+  .user-menu-panel > .user-menu-out {
+    margin-top: 4px !important;
+    color: #b42318 !important;
+    border-top: 1px solid #eef2f6 !important;
+    border-radius: 0 0 10px 10px !important;
+  }
+
+  /* 5. Fix the header (Name and Email) */
+  .user-menu-head {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 12px !important;
+    border-bottom: 1px solid #eef2f6 !important;
+    margin-bottom: 4px !important;
+  }
+  
+  .user-menu-head small {
+    display: block !important;
+    width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+}
 * {
   box-sizing: border-box;
 }
