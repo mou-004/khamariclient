@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Bell, ChevronDown, ClipboardList, Gavel, LayoutDashboard, LogOut, RotateCcw, ShoppingBag, UserRound } from 'lucide-react';
+import { Bell, ChevronDown, ClipboardList, Gavel, LayoutDashboard, LogOut, RotateCcw, UserRound } from 'lucide-react';
 
 const dashboardFor = (role) => (['seller', 'seller_pending'].includes(role) ? 'seller' : ['admin', 'superAdmin', 'super-admin'].includes(role) ? 'admin' : 'customer');
 const roleLabel = (role) => (dashboardFor(role) === 'admin' ? 'Administrator' : dashboardFor(role) === 'seller' ? (role === 'seller_pending' ? 'Seller (awaiting approval)' : 'Seller') : 'Customer');
@@ -27,7 +27,6 @@ export default function UserMenu({ user, navigate, onLogout }) {
     {open && <div className="user-menu-panel" role="menu">
       <div className="user-menu-head"><b>{user.name || 'My account'}</b><small>{user.email}</small><em>{roleLabel(user.role)}</em></div>
       <button role="menuitem" onClick={() => go(dashboardFor(user.role))}><LayoutDashboard size={16} /> {customer ? 'My account' : 'Dashboard'}</button>
-      <button role="menuitem" onClick={() => go('products')}><ShoppingBag size={16} /> Products</button>
       {customer && <button role="menuitem" onClick={() => go('orders')}><ClipboardList size={16} /> My orders</button>}
       {customer && <button role="menuitem" onClick={() => go('payments')}><ClipboardList size={16} /> My payments</button>}
       {customer && <button role="menuitem" onClick={() => go('my-bids')}><Gavel size={16} /> My bids</button>}

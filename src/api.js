@@ -14,7 +14,7 @@ export async function api(path, { method = 'GET', body, signedIn = true } = {}) 
     else if (signedIn !== 'auto') throw new Error('Please sign in again.'); // 'auto' = public page that adds your sign-in when you have one
   }
   let response;
-  try { response = await fetch(`${API_BASE}${path}`, { method, headers, body: body !== undefined ? JSON.stringify(body) : undefined }); }
+  try { response = await fetch(`${API_BASE}${path}`, { method, headers, body: body !== undefined ? JSON.stringify(body) : undefined, ...(method === 'GET' ? { cache: 'no-store' } : {}) }); }
   catch { throw new Error('Cannot reach the Khamari server. Make sure the backend is running (npm start in the project folder).'); }
   const data = await response.json().catch(() => ({}));
   if (!response.ok) throw Object.assign(new Error(data.error || `Request failed (${response.status})`), { status: response.status });

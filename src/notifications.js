@@ -4,7 +4,7 @@ import { auth } from './firebase';
 
 // One shared notification store for the whole site. It checks the backend every 8 seconds,
 // again when you return to the tab, and tells every bell on screen what changed.
-let state = { uid: null, signedIn: false, items: [], unread: 0, loaded: false, fresh: null };
+let state = { uid: null, signedIn: false, items: [], unread: 0, loaded: false, loading: false, error: '', fresh: null };
 let seen = new Set();
 let timer = null;
 let inflight = null;
@@ -16,15 +16,18 @@ export async function refreshNotifications() {
   inflight = (async () => {
     await auth?.authStateReady?.();
     const uid = auth?.currentUser?.uid || null;
-    if (!uid) { state = { uid: null, signedIn: false, items: [], unread: 0, loaded: true, fresh: null }; seen = new Set(); emit(); return; }
-    if (uid !== state.uid) { seen = new Set(); state = { uid, signedIn: true, items: [], unread: 0, loaded: false, fresh: null }; }
+    if (!uid) { state = { uid: null, signedIn: false, items: [], unread: 0, loaded: true, loading: false, error: '', fresh: null }; seen = new Set(); emit(); return; }
+    if (uid !== state.uid) { seen = new Set(); state = { uid, signedIn: true, items: [], unread: 0, loaded: false, loading: true, error: '', fresh: null }; }
+    else state = { ...state, signedIn: true, loading: true, error: '' };
+    emit();
     try {
       const data = await api('/notifications?limit=10');
+      const rows = Array.isArray(data?.items) ? data.items : [];
       let fresh = state.fresh;
-      if (state.loaded) { const added = data.items.filter((n) => !n.read && !seen.has(n.id)); if (added.length) fresh = added[0]; }   // pop-up only for things that arrived while you were here
-      data.items.forEach((n) => seen.add(n.id));
-      state = { uid, signedIn: true, items: data.items, unread: data.unread, loaded: true, fresh };
-    } catch { state = { ...state, signedIn: true, loaded: true }; }
+      if (state.loaded) { const added = rows.filter((n) => n && !n.read && !seen.has(n.id)); if (added.length) fresh = added[0]; }
+      rows.forEach((n) => { if (n?.id) seen.add(n.id); });
+      state = { uid, signedIn: true, items: rows, unread: Number(data?.unread) || 0, loaded: true, loading: false, error: '', fresh };
+    } catch (error) { state = { ...state, signedIn: true, loaded: true, loading: false, error: error?.message || 'Could not load notifications.' }; }
     emit();
   })().finally(() => { inflight = null; });
   return inflight;
