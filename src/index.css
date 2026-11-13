@@ -7280,3 +7280,68 @@ body {
     display: none !important;
   }
 }
+
+/* =========================================
+   EMERGENCY MOBILE FIXES - DO NOT REMOVE
+========================================= */
+@media (max-width: 768px) {
+  /* 1. FORCE HEADER TO STAY ON ONE LINE */
+  .main-header .header-inner {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    padding: 0 12px !important;
+    height: 65px !important;
+    gap: 8px !important;
+  }
+  
+  /* Hide the text links that are overlapping */
+  .main-header .main-nav {
+    display: none !important;
+  }
+
+  /* Shrink the logo slightly so it fits */
+  .main-header .brand-name {
+    font-size: 14px !important;
+  }
+
+  /* 2. FIX THE PORTAL DASHBOARD HERO SECTION */
+  .kh-dashboard-hero {
+    padding: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  /* Fix the buttons inside the hero */
+  .kh-hero-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .kh-hero-actions button {
+    flex: 1 1 100% !important; /* Full width buttons on mobile */
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 12px !important;
+  }
+
+  /* 3. FIX STAT CARDS (Side-by-side instead of stacking) */
+  .portal-stat-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* Forces 2 columns */
+    gap: 10px !important;
+  }
+
+  .portal-stat {
+    padding: 12px !important;
+    flex-direction: column !important; /* Stacks icon above text */
+    align-items: flex-start !important;
+  }
+
+  .portal-stat strong {
+    font-size: 20px !important;
+  }
+}
