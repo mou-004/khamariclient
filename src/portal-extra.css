@@ -558,3 +558,118 @@
     right: -4px !important;
   }
 }
+@media (max-width: 768px) {
+  /* Hide the middle navigation links on mobile */
+  .main-nav {
+    display: none !important; 
+  }
+  
+  /* Ensure header layout doesn't break */
+  .header-inner {
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 15px;
+  }
+
+  /* Adjust the user menu dropdown to fit the screen */
+  .user-menu-panel {
+    width: calc(100vw - 30px);
+    right: -10px;
+    max-width: 300px;
+  }
+
+  /* Fix the portal topbar buttons if they overflow */
+  .portal-top-actions {
+    gap: 6px;
+  }
+}
+@media (max-width: 768px) {
+  /* Hide the middle navigation links on mobile */
+  .main-nav {
+    display: none !important; 
+  }
+  
+  /* Ensure header layout doesn't break */
+  .header-inner {
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 15px;
+  }
+
+  /* Adjust the user menu dropdown to fit the screen */
+  .user-menu-panel {
+    width: calc(100vw - 30px);
+    right: -10px;
+    max-width: 300px;
+  }
+
+  /* Fix the portal topbar buttons if they overflow */
+  .portal-top-actions {
+    gap: 6px;
+  }
+}
+@media (max-width: 600px) {
+  /* 1. Tighten up the Hero section */
+  .kh-dashboard-hero {
+    padding: 18px !important;
+    gap: 16px !important;
+  }
+  
+  /* Make hero buttons fit nicely instead of stretching */
+  .kh-hero-actions {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    width: 100%;
+  }
+  
+  .kh-hero-actions button {
+    flex: 1 1 calc(50% - 4px); /* Puts buttons side-by-side */
+    width: auto !important;
+    padding: 10px 8px !important;
+    font-size: 12px !important;
+    min-height: 40px;
+  }
+
+  /* 2. Fix the Stat Cards (Make them 2 columns instead of 1 long list) */
+  .portal-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .portal-stat {
+    padding: 12px !important;
+    gap: 8px !important;
+    flex-direction: column; /* Stack icon on top of text if needed */
+    align-items: flex-start;
+  }
+
+  .portal-stat-icon {
+    width: 32px !important;
+    height: 32px !important;
+    margin-bottom: 4px;
+  }
+
+  .portal-stat strong {
+    font-size: 18px !important;
+  }
+
+  /* 3. Fix the "Add product" button in the page heading */
+  .portal-page-heading {
+    align-items: flex-start !important;
+  }
+  
+  .portal-heading-actions {
+    width: 100%;
+  }
+
+  .portal-heading-actions .portal-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* 4. Fix the main dashboard layout wrapper */
+  .kh-dashboard-shortcuts {
+    grid-template-columns: 1fr !important; /* Stack shortcut cards */
+  }
+}
