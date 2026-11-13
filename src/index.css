@@ -164,6 +164,116 @@
     justify-content: center !important;
   }
 }
+/* =========================================================
+   FINAL ULTIMATE FIX: HEADER, DROPDOWN & DASHBOARD
+   ========================================================= */
+@media (max-width: 768px) {
+  
+  /* --- 1. DROPDOWN MENU FIX (Sign Out wrapping) --- */
+  .user-menu-panel {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    right: 0 !important;
+    width: 260px !important;
+    max-width: calc(100vw - 24px) !important;
+    background: #ffffff !important;
+    border-radius: 14px !important;
+    box-shadow: 0 10px 40px rgba(10, 25, 49, 0.15) !important;
+    z-index: 9999 !important;
+    padding: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .user-menu-panel > button {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 44px !important;
+    padding: 11px 12px !important;
+    gap: 10px !important;
+    white-space: nowrap !important; /* Forces text on one line */
+    word-break: keep-all !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #0a1931 !important;
+    border-radius: 10px !important;
+    background: transparent !important;
+    border: 0 !important;
+  }
+
+  .user-menu-panel > button:hover {
+    background: #f1f6f9 !important;
+  }
+
+  .user-menu-panel > button svg {
+    flex: 0 0 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Sign out button specific fix */
+  .user-menu-panel > .user-menu-out {
+    margin-top: 4px !important;
+    color: #b42318 !important;
+    border-top: 1px solid #eef2f6 !important;
+    border-radius: 0 0 10px 10px !important;
+  }
+
+  .user-menu-panel > .user-menu-out:hover {
+    background: #fdf0ef !important;
+  }
+
+  /* Menu header (name & email) */
+  .user-menu-head {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 12px !important;
+    border-bottom: 1px solid #eef2f6 !important;
+    margin-bottom: 4px !important;
+  }
+  
+  .user-menu-head small {
+    width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* --- 2. DASHBOARD HERO (Add product buttons) --- */
+  .kh-dashboard-hero {
+    padding: 20px 16px !important;
+  }
+  
+  .kh-hero-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .kh-hero-actions button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* --- 3. STAT CARDS (2 columns side-by-side) --- */
+  .portal-stat-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  .portal-stat {
+    padding: 14px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
 * {
   box-sizing: border-box;
 }
